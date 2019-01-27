@@ -1,0 +1,137 @@
+%preamble - package inclusion and set up
+\input{setup/preamble.tex}
+
+%macros - please read this file
+\input{setup/macros.tex}
+
+\begin{document}       % TIP: If you are using TeXstudio you can open
+%\tableofcontents      %      the file by Ctrl+LeftClick on setup/macros.tex
+%\pagebreak             %      If the file doesn't exist, you will be asked
+					   %      weather or not you want to create it.
+%\begin{center}
+%	\vspace{5cm}
+%	\Huge{Worksheets}
+%\end{center}
+%\clearpage
+
+%||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+%|||||||                 Example Inputs                  ||||||||
+%||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+%|||||||                                                 ||||||||
+%			 \input{chapters/aFigureSample.tex}			 %|||||||
+%			 \input{chapters/bTableSample.tex} 		     %|||||||
+%			 \input{chapters/cEquationSample.tex}		 %|||||||
+%			 \input{chapters/dTikzSample.tex}            %|||||||
+%			 \input{chapters/eCodeSample.tex}            %|||||||
+%|||||||                                                 ||||||||
+%||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+%||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
+
+%%% Prereport %%%
+		\setlength\cftaftertoctitleskip{2pt}
+		\setlength\cftafterloftitleskip{6pt}
+		\setlength\cftafterlottitleskip{6pt}
+%\selectlanguage{danish}
+%\title{Something about the coolest preprocessing methods and nice results for IDP study}
+
+%%% Frontmatter Settings %%%
+		\pagestyle{empty} %disable headers and footers
+		\pagenumbering{roman} %use roman page numbering in the frontmatter I II...
+	%	\fancyfoot[RE,LO]{18??} %page number on all pages
+		\fancyfoot[LE,RO]{\thepage}
+		\fancyhead[LE,LO,RE,RO]{}
+
+%%% Introductory Formalities %%%
+%\includepdf[pages={1}]{formalities/frontpage.tex}
+			\input{formalities/frontpage.tex}			% <--- the frontpage
+			\pagestyle{fancy}
+%\include{formalities/kolofon}
+			\input{formalities/titleSheet.tex} 			 % <--- the titlesheet - contains the synopsis!!
+%%% Preface %%%
+			\cleardoublepage
+			
+%			\input{contents/bIntro/abstract.tex}			 % <--- this is the abstract!!
+\clearpage
+			\input{formalities/forord.tex}				% <--- the preface
+%
+%\input{contents/bBackground/title.tex}
+\clearpage
+			\pdfbookmark[0]{Table of Contents}{label: tableOfCentents}
+			\tableofcontents
+			\cleardoublepage
+
+
+%%% Mainmatter Settings %%%
+\pagenumbering{arabic} %use arabic page numbering in the mainmatter
+\fancyhf{}
+\fancyfoot[C]{\thepage} %\text{ of} \pageref{LastPage}			% ADD LABLE{LASTPAGE} TO LAST PAGE !!
+\fancyfoot[RE,LO]{18gr9411}																								   %
+\fancyhead[RE,LO]{}																												%% } consider fancyfoots
+\fancyhead[RE,LO]{\color{aaublue}\small\nouppercase\leftmark} %even page - chapter title %
+\pagestyle{fancy}
+
+
+%---------------------------INPUTS-------------------------------
+
+%\input{contents/statusText.tex}
+\part{Problem Analysis}
+\chapter{Introduction} \label{chap:Introduction}
+\input{contents/Introduction/aIntroduction.tex}
+
+\chapter{Problem Analysis} \label{chap:Problem_analysis}
+\input{contents/Problem_analysis/Header_problem_analysis.tex}
+\input{contents/Problem_analysis/Pain_physiology.tex}
+\input{contents/Problem_analysis/Hemodynamic_Response.tex}
+\input{contents/Problem_analysis/fMRI.tex}
+\input{contents/Problem_analysis/Individual_Difference.tex}
+\input{contents/Problem_analysis/Noise.tex}
+\input{contents/Problem_analysis/STA_preprocessing_v2.tex}
+\input{contents/Problem_analysis/Problem_statement.tex}
+
+\part{Problem Solution}
+\chapter{Methods}
+\input{contents/Methods/Meth_intro.tex}
+\input{contents/Methods/Study_protocol.tex}
+\input{contents/Methods/Dataset_structure.tex}
+\input{contents/Methods/BET_and_reg.tex}
+\input{contents/Methods/Standard_preprocessing.tex}
+\input{contents/Methods/FSL_FIX.tex}
+\input{contents/Methods/MELODIC_ICA.tex}
+\input{contents/Methods/Fix_choose_IC.tex}
+\input{contents/Methods/Handlabeling.tex}
+\input{contents/Methods/Feature_ex.tex}
+\input{contents/Methods/Classification.tex}
+\input{contents/Methods/Intensity_normalization.tex}
+\input{contents/Methods/Statistical_analysis.tex}
+
+\part{Results}
+\chapter{Results}
+\input{contents/Results/Results.tex}
+\input{contents/Results/Results_freq.tex}
+\input{contents/Results/Results_ID.tex}
+
+\part{Synthesis}
+\input{contents/Synthesis/Discussion.tex}
+\input{contents/Synthesis/Conclusion.tex}
+
+	
+\urlstyle{same}
+\printbibliography\clearpage
+
+
+
+\cleardoublepage
+% BILAG
+\begin{appendices}
+\chapter{Appendices}
+\input{contents/Appendix/MRI_physics.tex}
+\input{contents/Appendix/MR_im_rec.tex}
+\input{contents/Appendix/Stimuli.tex}
+\input{contents/Appendix/ICA.tex}
+\input{contents/Appendix/PCA.tex}
+\input{contents/Appendix/GLM.tex}
+\end{appendices}
+
+
+\end{document}

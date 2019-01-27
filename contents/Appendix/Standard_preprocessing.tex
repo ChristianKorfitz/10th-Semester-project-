@@ -1,0 +1,69 @@
+
+
+\section{General MRI Preprocessing}
+
+The following section will present some preprocessing methods, which generally are applied to remove noise and artifacts. For each method the artifacts/noise problem will be described followed by how the method solves this problem. The section will thereby present some of the common issues to be aware of in fMRI acquisition and what methods to implement in limiting artifact/noise influence.   
+
+When MRI data is acquired there are several steps, which need to be taken, before the multidimensional images are ready to undergo statistical analysis. These steps involves correction methods, which are often referred to as preprocessing. \cite{Moayedi2018} 
+There are multiple steps in preprocessing fMR images depending on the apparent application and outcome intended. However, there is a standard set of methods that is usually used across all applications. An example of some of the general processing steps for MR imaging can be seen in \figref{fig:back:pipeline}. \cite{Poldrack2011} 
+
+\begin{figure}[H]                 
+	\includegraphics[width=.8\textwidth]{figures/aBackground/processing}  
+	\caption{The general pipeline for MRI processing done in either FSL or AFNI, showing the different processing steps considered before final statistical analysis. Modified from \cite{Poldrack2011}.}
+	\label{fig:back:pipeline} 
+\end{figure}
+
+
+\subsection{Quality control}
+Conducting a continuous quality control is highly recommended after each performed correction step. Various scanner artifacts can occur while acquiring an MRI series. Before performing any common correction steps, one should consider to look for spike or ghosting artifacts. Spike artifacts are seen as a regular pattern of change in brightness across the entire image. This problem can occur due to instability inside the scanner deriving from e.g. electrical discharges.  
+The artifact called ghosting occur mainly due to two reasons. One being an offset in phase between different lines in K-space and the other due to periodic motion as in heartbeat and respiration. Ghosting can be seen as light copies of the object appearing to either side of the object. Both types of artifacts can corrupt the information contained in the images. However, artifacts of this kind rarely present themselves in newer scanners, nevertheless it is still recommended to perform a quality control of the raw input from the scan as well as the result of the correction steps. \cite{Poldrack2011}
+
+\subsection{Distortion correction}
+
+Some fMRI acquisition methods suffers from artifacts at regions where air and tissue meet. The ear canal and sinuses are areas especially vulnerable. Inhomogeneity in the magnetic field in these areas can cause two types of artifacts: dropout and geometric distortion. A dropout will result in a reduced signal intensity in regions close to the air to tissue transition. When a dropout during an acquisition occurs, the lost signal cannot be restored and the damage is permanent. Therefore it is wise to consider the appropriate acquisition method taking the area of interest into addition. Air to tissue passages can also be subject to spatial distortion due to inhomogeneity created in the magnetic field. This will lead to structures not being located correctly in the captured image. This distortion makes is difficult to align two different scans, as done when aligning fMRI images with structural images. 
+The spatial distortion can partially be corrected by employing field maps. In order to do a field map, the pulse sequence from the scan needs to be known. The process involves acquiring images at two different echo times. This results in images with two different phases, which can be used to compute the field inhomogeneity. Thereby it becomes possible to calculate the relative distance each voxel has shifted. This makes up a map for the distance shift for each voxel, and by inverting the map the original image can be restored. \cite{Poldrack2011}  
+
+\subsection{Slice timing correction} 
+
+Acquiring fMRI scans the slices are taken one by one. This can either be in an ascending, descending or interleaved order. Interleaved order is sequentially skipping every either odd or even slice and then afterwards acquiring the skipped slices. Regardless of which order the slices are acquired, a difference in effect in each slice to the same hemodynamic response will be present due to the time difference in the slices. The method and result of interleaved MRI acquisition order can be seen \figref{fig:back:interleaved}. The difference in time between slices can range up to a couple of seconds depending on the acquisition protocol. 
+\begin{figure}[H] 
+	{\includegraphics[width=.40\textwidth]{figures/aBackground/response}}  
+	\caption{Figure (a) illustrates an example of an MRI acquisition using interleaved order, where initially every odd slice is acquired followed by every even. The information about the hemodynamic response in each slice, and thereby also the difference at each time-point is shown in figure b. Figure modified from \cite{Poldrack2011}.}
+	\label{fig:meth:slice}
+\end{figure}
+
+The difference in slice timing constitutes a problem when analyzing the data. The data is formed into statistical model, but since this model assumes that all slices are acquired at the same time point, the actual signal and the statistical model creates a mismatch. To counter this problem slice timing correction has been introduced. The common approach of this method is to choose a reference slice. Usually the slice acquired at T/2, where T is the total scan time, is used to interpolate the others. Linear interpolation can be used for simplicity, but most often sinc interpolation is used as it imposes less smoothing to the signal. \cite{Poldrack2011} 
+
+\subsection{Motion correction}
+
+Correcting for motion artifacts when doing fMRI is inevitable, since even the best subjects will not be able to hold still. Even subtle movements as swallowing will be visible in the acquired image. \cite{Poldrack2011} 
+
+Multiple internal and external factors can cause a subject to move. Internal factors are non-avoidable physiologic motion. The heartbeat causes a pulsating movement, which makes the brain move. Additionally, motion created during respiration can cause small changes in the magnetic field around the head. External factors like imposed stimulus might also cause the subject to make sudden movements. Often when doing fMRI the brain activation is measured while the subject is subjected to some kind of stimulus. The stimulus would make the patient move, while some brain regions might also show activation associated with stimulus. Therefore it is easy to mistake brain activation with stimulus correlated movement when analyzing the data, resulting in a weaker or even false statistical analysis. \cite{Poldrack2011} 
+
+Motion during image acquisition can result in two primary artifact effects: bulk motion and spin history. Bulk motion refers to the movement of the head as a whole and requires standard correction methods, e.g. the images throughout the series to be realigned to a reference image. The effect of bulk motion can be visual in the entire image of the brain, but the effect will be most predominant at the edges of the brain. Here the artifact will be noticeable as either a drop or increase in intensity as a voxel would switch from containing brain tissue to suddenly not.  
+Spin history is head movement interfering with the MRI signal itself. The interference occur during acquisition when a voxel of excited protons is moved in to a neighboring slice. The scanner will thereby receive a different signal than expected which do not correctly represent the actual local properties. This results in an image where the intensities change in a striped pattern. The standard motion correction methods cannot cope with this type of artifact, but Independent Component Analysis (ICA) might give opportunities to correct for this artifact. \cite{Poldrack2011} 
+
+As mentioned earlier motion correction is to realign the series of images to a reference image trying to minimize cost in an introduced cost function. The reference image is usually the one taken midway into the series, justified by it being the closets to the average as well as the scanner at that time would have achieved maximum stability, as the magnetization would have reached steady state. The images are thereafter realigned utilizing an image registration method as it register the brain in each image. The general methods for motion correction treats the brain as a rigid objects, thus only performing rigid body transformations. Subsequently, the brain can either translate or rotate along the three axis, but the shape of the head cannot change. This method is therefore only applicable for bulk motion. \cite{Poldrack2011} 
+
+\subsection{Spatial smoothing}
+
+In some cases, introducing spatial smoothing in the preprocessing pipeline proves to be beneficial. Spatial smoothing allows the possibility of gaining a higher signal to noise ratio within the image, though with the consequence of a decrease in spatial resolution as the image gets blurred and smaller areas of activation gets smeared together. The operation can be justified by the closely neighboring voxel being correlated in effect to the hemodynamic response. Spatial smoothing removes the higher-frequency information. This might wash out some of the less significant features in the image, but this is favorable if the signal is increased for the more significant features. Especially when acquiring small voxels spatial smoothing is favorable, as it reduces the overall noise. Smoothing can also be applied to lessen the anatomical variability in images when doing studies with multiple subjects. \cite{Poldrack2011}
+
+Smoothing is done by applying a kernel, also called filter, to the image. The three dimensional image is convoluted with a three dimensional filter. The most commonly used is a Gaussian filter, where the extent of smoothing is controlled by the width of the distribution. The filter works such that for each voxel a new value is calculated based on a weighted average of the neighboring pixels, where the ones closest contribute the most and those further away contribute the least. In statistical terms this can be put as the width of the distribution is described by the full width at half maximum (FWHM). Using standard deviation this would be:
+\begin{equation}
+FWHM = 2\sigma\sqrt{2ln(2)}
+\end{equation} 
+, where an increase in FWHM, would result in a greater smoothing. The amount of smoothing needed to be implemented highly depends on the application and purpose. When smoothing fMRI signals for noise, the width of the filter distribution should not be bigger than the area of activation signals of interest. The effect of smoothing is shown on \figref{fig:back:smooth}, where it is seen that as width increases smaller activation areas get removed and bigger areas of activation gets smeared together. 
+Using smoothing to reduce the effect of anatomical variability, the optimal distribution width depends on the amount of variability in the subject population. \cite{Poldrack2011}
+  
+
+\begin{figure}[H]                 
+	\includegraphics[width=.8\textwidth]{figures/aBackground/smooth}  
+	\caption{Illustration showing the impact of using different distribution width on the activated areas. An increase in width results in greater areas of activation smearing together and the removal of smaller. \cite{Poldrack2011}}
+	\label{fig:back:smooth} 
+\end{figure}  
+
+\subsection{Temporal filtering}
+
+A characteristic noise which represents itself during fMRI data is the presence of a low-frequency drift. The drift is characterized as a slow increasing trend in the BOLD magnitude, when assessing the signal in the time domain. Doing a Fourier Transform, to analyze the signal in the power spectrum, would reveal low frequency contributers influencing the output. The reason for this type of noise contamination has been heavily investigated, and conclusions state that the noise originates from MRI scanner instability.\fxnote{heating of coils and such i believe} As this low-frequency drift will always be present, it is very crucial to consider the interval of which tasks or stimuli are performed to avoid the output being present in the noise range of $0$ to $0.015$ Hz. Therefore stimuli or tasks should be performed within intervals of $70$ s or less. \cite{Poldrack2011} \\
+A two step approach is used to remove the low-frequency contribute from the signal. Firstly a high-pass filter is used to remove the drift trend in the data. Introducing the high-pass filter impose a correlation of the data making the time series correlated over time. This would violate some of the assumptions made in the General Linear Model (GLM), often used for statistical analysis, because the data is not temporally autocorrelated and the variance to be constant over observations, as presented in \secref{back:sec:glm}. Not attending to this problem might cause an elevation in false positive rate. Thus, the second step is to estimate the autocorrelation and undo the correlation structure of the data. This is typically done by pre-whitening the data. There are multiple ways to implement a high-pass filter ADD SOMETHING ABOUT LOWESS METHOD \cite{Poldrack2011}
