@@ -1,13 +1,12 @@
 \section{Prosthetic Control Strategies}
 
-Throughout the development of myoelectric prosthetics, different control schemes have been derived, tested and some implemented in commercially available devices. Complexity and dexterity are dependent on the control system and before choosing a method it must be considered, which control method would be ideal for the proposed closed loop system. As presented in \secref{intro}, the feedback should provide information of the current prosthetic state. A control method which is intuitive and facilitates focus on the experienced feedback is therefore desired. 
+Throughout the development of myoelectric prosthetics, different control schemes have been derived, tested and some implemented in commercially available devices. Complexity and dexterity are dependent on the control system and before choosing a method it must be considered, which control method would be ideal for the proposed closed loop system. As presented in the beginning of \secref{backback}, the feedback should provide information of the current prosthetic state. A control method which is intuitive and facilitates focus on the experienced feedback is therefore desired.\\
+Initially how the actuator state is controlled should be considered.
 
-\subsubsection{Sequential myoelectric control}
+- why position control won't work \\
+- why velocity is great \\ 
+- sequential control \\
+- add a bit on what proportional control is \\
 
-
-Velocity based strategies can be combined all major control schemes of switch-based, sequential and simultaneous. Switch-based is a simplistic, but slow control approach and it quickly gets impractical and non-intuitive when increasing the number of DoF's to be replaced as the intended movement is unrelated to the acquisition site \cite{Wurth2014}. Intuitiveness and naturalness in prosthetic control can be achieved through simultaneous control, where more than one DoF is controlled at a time \cite{Farina2014}. Dis ved simultan
-
-Sequential control gives....
-
- Often signal from several electrodes are captured. An assumption is that given a consistent movement task is performed the muscles will exhibit a unique activation pattern, and that features extracted from each signal for each movement type can be used to distinguish between different movement types. Hence, complex EMG-signal patterns can be assigned to discrete movement classes, thus also allowing for control of several DoF's.  \cite{Farina2014,Wurth2014}  \\
-This approach is more intuitive as it does not demand the need for switching between DoF's, and lowering the amount of effort the user has to put in completing a task. 
+Velocity based strategies can be combined in all major control schemes of switch-based, sequential and simultaneous. Switch-based is a simplistic, but slow control approach and it quickly gets impractical and non-intuitive when increasing the number of DoF's to be replaced as the intended movement is unrelated to the acquisition site \cite{Wurth2014}. Intuitiveness and naturalness in prosthetic control can be achieved through simultaneous control, where more than one DoF is controlled at a time, but eliciting to movement at a time might be stealing to much attention from perceiving the feedback \cite{Farina2014}. \\
+Sequential control hold the possibility of intuitive movement activation 
