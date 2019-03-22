@@ -1,14 +1,41 @@
 \section{Classification}
-For the myoelectric prosthesis to know which movement to perform, it needs to know how to differentiate between the movements it will be trained to perform. For this purpose classification is a commonly applied model. The classification model, or classifier, is given known data consisting of features extracted from the raw EMG signals, which were recorded while the user was performing different movements. If each of the known feature data sets related to each movement is known they can be labelled appropriately, and the classifier will then know which data represents which movement. Each label is known as a class and the process of labelling the data is called supervised learning. The known data is also called training data, hence this process is called training the classifier. If the classifier is trained properly, it is able to categorize unknown data accurately into the correct class. This is what happens online when using a pattern recognition-based mypelectric prosthesis. The classifier is, however, only able to categorize unknown data into one of the trained classes. \\
-A frequently used supervised classifier for myoelectric prosthetic control is the Linear Discriminant Analysis (LDA). An advantage of using LDA is that it enables robust control, while having a low computational cost. LDA will be used in this project as a control scheme and an overview of the theory behind LDA will be given in the following section.
+For the myoelectric prosthesis to know which movement to perform, it needs to know how to differentiate between the movements it will be trained to perform. For this purpose classification is a commonly applied model. The classification model, or classifier, is given known data consisting of features extracted from the raw EMG signals, which were recorded while the user was performing different movements. If each of the known feature data sets related to each movement is known they can be labelled appropriately, and the classifier will then know which data represents which movement. Each label is known as a class and the process of labelling the data is called supervised learning. The known data is also called training data, hence this process is called training the classifier. If the classifier is trained properly, it is able to categorize unknown data accurately into the correct class. This is what happens online in each segmented data window when using a pattern recognition-based myoelectric prosthesis. The classifier is, however, only able to categorize unknown data into one of the trained classes. \\
+A frequently used supervised classifier for myoelectric prosthetic control is the LDA classifier. An advantage of using LDA is that it enables robust control, while having a low computational cost. LDA will be used in this project to determine motor function and an overview of the theory behind LDA will be given in the following section.
 
 \subsection{Linear Discriminant Analysis} 
+LDA determines decision boundaries between the desired number of classes, where the distance between the decision boundary and the centroid of the class feature values is maximized. Such a decision boundary is defined as a linear combination of the feature values and a weight $w$:
 
+\begin{equation} \label{eq:LDAcommon}
+	g_{j}(x) = weight_{j}x + bias_{j}
+\end{equation}
 
-fitcdiscr(classInput,moveLabel,'DiscrimType','pseudolinear', 'ScoreTransform','none','HyperparameterOptimizationOptions','bayesopt')
+where $weight_{j}$ decides the orientation of the decision boundary of class $j$, and $bias_{j}$ is a bias that decides the position of the decision boundary of class $j$ in relation to origo. \\
+The decision rule of a LDA classifier is based on which class that has the highest probability of having produced the input feature values; also called the posterior probability. Given this decision rule, LDA can be derived from the Bayes theorem, which expresses the posterior probability as:
 
-pseudolinear: all classes have the same covariance matrix. The matrix is inverted by the used the pseudo inverse
+\begin{equation}
+	P(\omega_{j}|x) = P(x|\omega_{j})P(\omega_{j})
+\end{equation}
 
-none: the confidence scores are not transformed
+where $P(x|\omega_{j})$ is the class conditional probability, the probability that a feature value from class $j$ appears, and $P(\omega_{j})$ is the prior probability, the probability that class $j$ appears. This can be written as the function:
 
-bayesopt: uses bayes optimization to yield minimum loss in cross validation
+\begin{equation}
+	g_{j}(x) = P(x|\omega_{j})P(\omega_{j})
+\end{equation}
+
+\\
+An constraint in LDA is that each class is Gaussian distributed and all classes share the same covariance matrix. The class conditional probability can therefore be written as the multivariate normal distribution, in which the class conditional covariance matrix can be written as the common covariance matrix. This leaves the following function:
+
+\begin{equation}\label{eq:LDAadvance}
+	g_{j}(x) = \mu_{j}\Sigma^{-1}x'-\frac{1}{2}\mu_{j}\Sigma^{-1}\mu'_{j}-ln(P(\omega_{j}))
+\end{equation}
+
+where $\mu_{j}$ and $\Sigma^{-1}$ are the mean vector for class $j$ and the common covariance matrix, respectively. The function in \eqref{eq:LDAadvance} can be written in the common linear discriminant classifier form as in \eqref{eq:LDAcommon}. \cite{Scheme2013}\\
+Thus, a posterior probability is calculated for each class based on the decision boundaries, and according to the decision rule, the class with the highest probability of having produced the input feature values will be chosen as the determined motor function. However, LDA only determines the movement class, but does not map the motion the actuator must perform. For this purpose a proportional control scheme must be applied to activate the determined motor function in a proportional matter. \cite{Fougner2012}
+
+%fitcdiscr(classInput,moveLabel,'DiscrimType','pseudolinear', 'ScoreTransform','none','HyperparameterOptimizationOptions','bayesopt')
+%
+%pseudolinear: all classes have the same covariance matrix. The matrix is inverted by the used the pseudo inverse
+%
+%none: the confidence scores are not transformed
+%
+%bayesopt: uses bayes optimization to yield minimum loss in cross validation
