@@ -30,7 +30,7 @@ An constraint in LDA is that each class is Gaussian distributed and all classes 
 \end{equation}
 
 where $\mu_{j}$ and $\Sigma^{-1}$ are the mean vector for class $j$ and the common covariance matrix, respectively. The function in \eqref{eq:LDAadvance} can be written in the common linear discriminant classifier form as in \eqref{eq:LDAcommon}. \cite{Scheme2013}\\
-Thus, a posterior probability is calculated for each class based on the decision boundaries, and according to the decision rule, the class with the highest probability of having produced the input feature values will be chosen as the determined motor function. However, LDA only determines the movement class, but does not map the motion the actuator must perform. For this purpose a proportional control scheme must be applied to activate the determined motor function in a proportional matter. \cite{Fougner2012}
+Thus, a posterior probability is calculated for each class based on the decision boundaries, and according to the decision rule, the class with the highest probability of having produced the input feature values will be chosen as the determined motor function. However, LDA only determines the movement class, but does not map the motion the actuator must perform. For this purpose am additional control scheme must be applied to activate the determined motor function in a proportional matter. \cite{Fougner2012}
 
 %fitcdiscr(classInput,moveLabel,'DiscrimType','pseudolinear', 'ScoreTransform','none','HyperparameterOptimizationOptions','bayesopt')
 %
