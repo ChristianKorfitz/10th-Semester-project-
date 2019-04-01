@@ -8,11 +8,10 @@ The investigators are biomedical engineering Master students at Aalborg Universi
 
 \textbf{Background} \\
 Losing an upper limb can be hugely debilitating and can result in lowered quality of life due to restrictions in function, appearance and sensation. As a mean to regain the functionality, transradial amputees can receive a functional prosthesis, where the majority are controlled by muscles signals, or myoelectric signals (EMG). However, still 25\% of myoelectric prosthesis users reject their device, where a major reason for the low satisfaction is due to lack of sensory feedback.
-Many advancements have been made in the academic community to improve function accuracy. However, combining function with sensory feedback, thus closing the motor/sensory loop, is still a scarcely investigated area. Therefore, this experiment will combine the control of a prosthesis with sensory feedback delivered via electrotactile stimulation electrodes placed on the forearm. During the experiment the subjects will test two different feedback configurations while controlling a virtual prosthesis, represented as a cursor on a computer screen.  
+Many advancements have been made in the academic community to improve function accuracy. However, combining function with sensory feedback, thus closing the motor/sensory loop, is still a scarcely investigated area. Therefore, this experiment will combine the control of a prosthesis with sensory feedback delivered via electrotactile stimulation electrodes placed on the forearm. During the experiment the subjects will test two different feedback configurations while controlling a virtual prosthesis, represented as a cursor on a computer screen. The subject can move the cursor in a two-dimensional coordinate system, where the axes represents a degree of freedom (DOF) each (wrist rotation and opened/closed hand).
 
 \textbf{Purpose} \\
 The purpose of the experiment is to compare how subjects' perform in an evaluation test when receiving feedback from two different electrotactile stimulation configurations, respectively, in a closed loop virtual prosthesis. This might provide information on which feedback that seems more intuitive to use in practice in a prosthesis.
-
 
 \textbf{Research Aim} \\
 Test and evaluate two novel stimulation schemes, one based on modulating amplitude and one based on spatial localization of activation, for conveying sensory feedback of the prosthesis state in a closed loop prosthetic control system.
@@ -23,10 +22,11 @@ To be estimated.
 \textbf{Inclusion Criteria} \\
 The subject must be:
 \begin{itemize}
-	\item able bodied or transradially amputated as the highest degree of upper limb amputation.
+	\item able bodied. % or transradially amputated as the highest degree of upper limb amputation.
 	\item at least 18 years of age.
 	\item able to understand, read and speak English and/or Danish.
 	\item assessed by the investigators to comply with the instructions given during the experiment.
+	\item assessed by the investigators to have robust motor control.
 \end{itemize}
 
 \textbf{Exclusion Criteria} \\
@@ -36,10 +36,10 @@ The subject must:
 	\item be willing to receive low amplitude current stimulation. 
 \end{itemize}
 
-\textbf{{\Large Experiment Procedure}} \\
+\textbf{{\Large Experiment Description}} \\
 \newline
-The main aim of the experiment is for the subject to be able to correctly interpret the two sensory feedback schemes. The grid illustrated in \figref{fig:gridmap} is the map the subject will be able to move around inside. Each square in the map will deliver a different stimulus corresponding to the motion state of the virtual prosthesis, represented as the black cursor. The square with center in the origin (square with cursor inside in \figref{fig:gridmap}) corresponds to resting state and will provide no sensory feedback. The remaining squares in the first row will deliver stimuli corresponding to only the wrist rotation degree of freedom (DOF), and the remaining squares in the third column will deliver stimuli corresponding to the closed hand DOF. The remaining squares will deliver a stimulation based on a combination of the two DOFs. The further away from resting state a square is, corresponds to the angular degree of the prosthesis state in relation to the performed movement .
-The images located at each axis represent the hand movements needed to be performed to move the cursor in the corresponding direction. The control system will only respond to single DOF movements. Thus, the cursor is only able to move along one axis at a time and not diagonally.
+The main aim of the experiment is for the subject to be able to correctly interpret the two sensory feedback schemes when combined with myoelectric prosthetic control. The grid illustrated in \figref{fig:gridmap} is the map the subject will be able to move around inside. Each square in the map will deliver a different stimulus corresponding to the motion state of the virtual prosthesis, represented as the black cursor. The square with center in the origin (square with cursor inside in \figref{fig:gridmap}) corresponds to resting state and will provide no sensory feedback. The remaining squares in the first row will deliver stimuli corresponding to only the wrist rotation degree of freedom, and the remaining squares in the third column will deliver stimuli corresponding to the closed hand DOF. The remaining squares will deliver a stimulation based on a combination of the two DOFs. The further away from resting state a square is, corresponds to the angular degree of the prosthesis state in relation to the performed movement .
+The images located at each axis represent the hand movements needed to be performed to move the cursor in the corresponding direction. The control system will only respond to single DOF movements. Thus, the cursor is only able to move along one axis at a time and not diagonally. The subject will control the cursor with the dominant arm and receive sensory feedback on the contra-lateral arm. 
 
 \begin{figure}[H]                 
 	\includegraphics[width=0.78\textwidth]{figures/gridmap}  
@@ -47,19 +47,21 @@ The images located at each axis represent the hand movements needed to be perfor
 	\label{fig:gridmap} 
 \end{figure}
 
-Before the final evaluation test is carried out the subject will be trained in controlling the cursor via EMG signals, trained in interpreting the sensory feedback and trained in interpreting the sensory feedback while controlling the cursor. The following order represent the chronology of the tasks the subject needs to undergo:
+\textbf{{\Large Experiment Procedure}} \\
+\newline
+Before the final evaluation test is carried out the subject will be trained in controlling the cursor via EMG signals, trained in interpreting the sensory feedback and trained in interpreting the sensory feedback while controlling the cursor. The evaluation test is a target reaching test, where the subject needs to move the cursor to a highlighted target consisting of one of the grid squares. The cursor will not be visible, thus, the subject will have to only rely on the information received from the sensory feedback. The following order represent the chronology of the tasks the subject needs to undergo:
 
 \begin{enumerate}
 	\item Record EMG signals needed to build the prosthetic control system.
-	\item Train the subjects ability to control the cursor via letting the subject move freely around inside the grid map.
-	\item Perform target reaching test to evaluate the subject's ability to control the cursor.
+	\item Train the subject's ability to control the cursor via letting the subject move freely around inside the grid map.
+	\item Perform target reaching test to evaluate the subject's ability to control the cursor. The designated target will be one of the squares in the grid highlighted in red. To reach a target the cursor must enter the target and dwell inside it for 1.5 seconds. Then a bell sound will occur and a new target appears. The time limit for reaching a target is 30 seconds. The starting point is always the resting state square (first square in third column), and the cursor will, thus, return to starting point when a target is reached or then the time limit is reached. A total of 16 targets will appear before this test is through.
 	\item Record current amplitude thresholds needed to build the sensory feedback schemes.
-	\item Train the subject's ability to interpret the single DOF sensory feedback of feedback scheme 1 by exposing the subject three times to each of the eight stimuli squares.
-	\item Perform reinforcement learning on the eight squares from step 5 two times with sensory feedback from scheme 1.
-	\item Perform validation test on the eight squares from step 5 two times with sensory feedback from scheme 1.
+	\item Train the subject's ability to interpret sensory feedback of feedback one of the schemes. This is done  by exposing the subject to feedback from 15 of the grid squares. The subject will experience the transitions from square to square until the designated square is reached.  
+	\item Perform reinforcement learning on the 15 squares from step 5. The order of the squares and the route to each square will vary from step 5. During this step the subject must look away from the computer screen. When a designated square is reached, the subject will be asked where the cursor is located. After answering, the subject will be informed on whether is was correct, and told the correct location, if the answer was incorrect. 
+	\item Perform validation test on on the 15 squares from step 5 and 6. The order of the squares and the route to each square will vary from step 5 and 6. During this step the subject must look away from the computer screen. When a designated square is reached, the subject will be asked where the cursor is located. In this step, the subject will not be informed whether the answer was correct or not.
 	\item Train the subject's ability to control the cursor while receiving sensory feedback from scheme 1 via letting the subject move freely around inside the grid map.
-	\item Perform target reaching test where the cursor is invisible to evaluate how well the subject is to utilize the sensory feedback from scheme 1 regarding the cursor location.
-	\item Redo step 5-9 with sensory feedback from scheme 2.
+	\item Perform target reaching test where the cursor is invisible to evaluate how well the subject is to utilize the sensory feedback from scheme 1 regarding the cursor location. This test has the same format as the target reaching test from step 3.
+	\item Redo step 5-9 with sensory feedback from the remaining scheme.
 \end{enumerate}
 
 
