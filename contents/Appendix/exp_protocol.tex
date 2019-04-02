@@ -21,6 +21,7 @@ To be estimated.
 
 \textbf{Inclusion Criteria} \\
 The subject must be:
+\vspace{-15pt}
 \begin{itemize}
 	\item able bodied. % or transradially amputated as the highest degree of upper limb amputation.
 	\item at least 18 years of age.
@@ -31,6 +32,7 @@ The subject must be:
 
 \textbf{Exclusion Criteria} \\
 The subject must:
+\vspace{-15pt}
 \begin{itemize}
 	\item not have any diseases/conditions that may influence sensory perception.
 	\item be willing to receive low amplitude current stimulation. 
@@ -38,12 +40,21 @@ The subject must:
 
 \textbf{{\Large Experiment Description}} \\
 \newline
-The main aim of the experiment is for the subject to be able to correctly interpret the two sensory feedback schemes when combined with myoelectric prosthetic control. The grid illustrated in \figref{fig:gridmap} is the map the subject will be able to move around inside. Each square in the map will deliver a different stimulus corresponding to the motion state of the virtual prosthesis, represented as the black cursor. The square with center in the origin (square with cursor inside in \figref{fig:gridmap}) corresponds to resting state and will provide no sensory feedback. The remaining squares in the first row will deliver stimuli corresponding to only the wrist rotation degree of freedom, and the remaining squares in the third column will deliver stimuli corresponding to the closed hand DOF. The remaining squares will deliver a stimulation based on a combination of the two DOFs. The further away from resting state a square is, corresponds to the angular degree of the prosthesis state in relation to the performed movement .
-The images located at each axis represent the hand movements needed to be performed to move the cursor in the corresponding direction. The control system will only respond to single DOF movements. Thus, the cursor is only able to move along one axis at a time and not diagonally. The subject will control the cursor with the dominant arm and receive sensory feedback on the contra-lateral arm. 
+The main aim of the experiment is for the subject to be able to correctly interpret the two sensory feedback schemes when combined with myoelectric prosthetic control. The grid illustrated in \figref{fig:gridmap} is the map the subject will be able to move around inside. Each square in the map will deliver a different stimulus corresponding to the motion state of the virtual prosthesis, represented as the black cursor. The square with center in the origin (square with cursor inside in \figref{fig:gridmap}) corresponds to resting state and will provide no sensory feedback. The remaining squares in the first row will deliver stimuli corresponding to only the wrist rotation degree of freedom, and the remaining squares in the third column will deliver stimuli corresponding to the closed hand DOF. The remaining squares will deliver a stimulation based on a combination of the two DOFs. The further away from resting state a square is, corresponds to the angular degree of the prosthesis state in relation to the performed movement (see \figref{fig:sensconfigs}). \\
+The arrows in the upper right corner of \figref{fig:gridmap} represent the hand movements needed to be performed to move the cursor in the corresponding direction. The control system will only respond to single DOF movements. Thus, the cursor is only able to move along one axis at a time and not diagonally. The subject will control the cursor with the dominant arm through an EMG electrode armband. The subject will receive stimulation from an electrode consisting of 16 electrode pads placed around the contra-lateral forearm (see illustration in \figref{fig:sensconfigs}).
+
+\begin{figure}
+	\subfigure[Illustration of the spatial scheme.]
+		{\includegraphics[width=0.48\textwidth]{figures/El_array_spatial}}
+	\subfigure[Illustration of the amplitude scheme.]
+		{\includegraphics[width=0.48\textwidth]{figures/El_array_amplitude}}
+	\caption{Figure (a) shows the spatial scheme, which is based on different electrodes being activated depending on the level of the grid square the cursor is located in. The highest number of possibly activated electrodes is four. Figure (b) shows the amplitude scheme. Here, the amplitude of the active electrodes will increase with the increase of the level of the cursor location.}
+	\label{fig:sensconfigs}
+\end{figure}
 
 \begin{figure}[H]                 
-	\includegraphics[width=0.78\textwidth]{figures/gridmap}  
-	\caption{Image of the grid map and cursor used in the experiment.}
+	\includegraphics[width=0.78\textwidth]{figures/gridmap2}  
+	\caption{Image of the grid map and cursor used in the experiment. Performing supination moves the cursor the right, pronation moves it to the left and closing the hand moves it down. Opening the hand moves the cursor up, and is used as a correction movement if a wrong movement has been made.}
 	\label{fig:gridmap} 
 \end{figure}
 
@@ -51,8 +62,8 @@ The images located at each axis represent the hand movements needed to be perfor
 \textbf{{\Large Hand Movements Performed in the Experiment}} \\
 
 \begin{figure}[H]                 
-	\includegraphics[width=0.78\textwidth]{figures/handmovements}  
-	\caption{Image of the hand movements used in the experiment. From top left corner: Wrist pronation, wrist supination, opened hand and closed hand.}
+	\includegraphics[width=0.6\textwidth]{figures/handmovements}
+	\caption{Image of the hand movements used in the experiment for myoelectric prosthetic control. From top left corner: Wrist pronation, wrist supination, opened hand and closed hand.}
 	\label{fig:handmovements} 
 \end{figure}
 
@@ -62,6 +73,7 @@ Before the final evaluation test is carried out the subject will be trained in c
 
 
 \textbf{{Control}} \\
+\vspace{-25pt}
 \begin{enumerate}
 	\item Record EMG signals needed to build the prosthetic control system. To do this the subject must first perform  five movements used as reference signals: 15 seconds rest, 15 seconds maximum voluntary contraction (MVC) of wrist supination, 15 seconds MVC of wrist pronation, 15 seconds MVC of opened hand and 15 seconds MVC of closed hand. Between each contraction the subject will get a 15 seconds break to avoid fatigue. Secondly, the subject must perform movements from which the recorded signals are used to build the control system. Here, the subject controls a cursor as seen in \figref{fig:trapezoid}, and must match the cursor with trapezoidal trajectory. The cursor moves horizontally with time and the subject control the contraction intensity vertically. The subject must perform three contractions per movement: 40 \%, 50 \% and 70 \% of the MVC. The plateau of the trapezoidal trajectory corresponds to the designated fraction. Between each performed movement, the subject gets a 15 seconds break to avoid fatigue. Lastly, a 15 seconds rest is recorded. 
 	\item Train the subject's ability to control the cursor via letting the subject move freely around inside the grid map.
@@ -69,26 +81,35 @@ Before the final evaluation test is carried out the subject will be trained in c
 \end{enumerate}
 
 \begin{figure}[H]                 
-	\includegraphics[width=0.78\textwidth]{figures/trapezoid}  
-	\caption{}
+	\includegraphics[width=0.78\textwidth]{figures/trapezoid2}  
+	\caption{Image of the trapezoidal trajectory used when recording EMG signal used to build the control system. The subject controls the black cursor in height by increasing contraction intensity.}
 	\label{fig:trapezoid} 
 \end{figure}
 
 \textbf{Sensory Feedback} \\
+\vspace{-25pt}
 \begin{enumerate}
-	\item Record current amplitude thresholds needed to build the sensory feedback schemes.
-	\item Train the subject's ability to interpret sensory feedback of feedback one of the schemes. This is done  by exposing the subject to feedback from 15 of the grid squares. The subject will experience the transitions from square to square until the designated square is reached.  
-	\item Perform reinforcement learning on the 15 squares from step 5. The order of the squares and the route to each square will vary from step 5. During this step the subject must look away from the computer screen. When a designated square is reached, the subject will be asked where the cursor is located. After answering, the subject will be informed on whether is was correct, and told the correct location, if the answer was incorrect. 
-	\item Perform validation test on on the 15 squares from step 5 and 6. The order of the squares and the route to each square will vary from step 5 and 6. During this step the subject must look away from the computer screen. When a designated square is reached, the subject will be asked where the cursor is located. In this step, the subject will not be informed whether the answer was correct or not.
+	\item Record current amplitude thresholds needed to build the sensory feedback schemes. For each electrode the subject must first note when the stimulus with certainty is felt. When all thresholds are set, the sensation of neighbouring electrodes are compared to ensure homogeneity in the sensation. Afterwards the same procedure is performed for the subject's tolerance threshold. 
+	\item Train the subject's ability to interpret sensory feedback of feedback one of the schemes. This is done  by exposing the subject to feedback from all grid squares. The subject will experience the transitions from square to square until the designated square is reached.  
+	\item Perform reinforcement learning on 15 grid different squares. During this step the subject must look away from the computer screen. When a designated square is reached, the subject will be asked where the cursor is located. After answering the subject will be informed on whether is was correct, and told the correct location, if the answer was incorrect. 
+	\item Perform validation test on on the 15 squares from step 3. The order of the squares and the route to each square will vary from step 3. During this step the subject must look away from the computer screen. When a designated square is reached, the subject will be asked where the cursor is located. After answering the subject will not be informed whether the answer was correct or not.
 \end{enumerate}
 
 \textbf{Sensory Feedback with Control} \\
+\vspace{-25pt}
 \begin{enumerate}
 	\item Train the subject's ability to control the cursor while receiving sensory feedback from scheme 1 via letting the subject move freely around inside the grid map.
-	\item Perform target reaching test where the cursor is invisible to evaluate how well the subject is to utilize the sensory feedback from scheme 1 regarding the cursor location. This test has the same format as the target reaching test from step 3.
+	\item Perform target reaching test where the cursor is invisible to evaluate how well the subject is to utilize the sensory feedback from scheme 1 regarding the cursor location. This test has the same format as the target reaching test from the control procedure step 3.
 	\item Redo sensory feedback steps and sensory feedback with control steps with sensory feedback from the remaining scheme.
 \end{enumerate}
 
+
+\newpage
 \textbf{{\Large Experiment Setup}} \\
-To be included in the final protocol.
+
+\begin{figure}[H]                 
+	\includegraphics[width=0.8\textwidth]{figures/setupimg}  
+	\caption{Image of the experimental setup. 1) is the stimulation device with the stimulation electrode placed under the brown armband, 2) is the electrode armband used to record EMG signals and 3) is the computer screen used to guide the subject and display tasks.} 
+	\label{fig:setup} 
+\end{figure}
 
