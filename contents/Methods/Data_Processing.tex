@@ -5,53 +5,58 @@ The following sections will cover which filtering, segmentation and feature extr
 Due to the EMG-bandwidth being 10-500 Hz and the interest of removing low-frequency artefact noise, a $2^{nd}$ order butterworth high-pass filter with a cut-off at 10 Hz was implemented. The order of the filter was chosen, as fast update time was highly desired in the online prosthetic control, and a higher order might have slowed the update due to a longer computation time. The choice of implementing a butterworth filter was due to the wanting of no phase shift inside the EMG bandwidth, as this might have distorted the fidelity of some of the extracted features. 
 
 \subsection{Feature Extraction}
+In online myoelectric prosthetic control, quick update time is important to maintain naturalness in the prosthesis motion, while still ensuring robust classification. A windowing of 200 ms with 50 \% overlap was therefore chosen. This would update the prosthesis motion state every 100 ms and segment 40 samples per window to feed the classifier. In initial tests, this proved adequate to yield smooth and reliable prosthesis motions. \\
 
+For this project it was decided to extract the space domain features recommended by Donovan et al. \cite{Donovan2017}, due to the increased classification accuracy obtained compared to using Hudgins features when applying MYB for data acquisition. The features formulated in \cite{Donovan2017} were MAV, Mean MAV (MMAV), Scaled MAV (SMAV), Correlation Coefficient (CC), Mean Absolute Difference Normalized (MADN), MAD Raw (MADR) and Scaled MADR (SMADR). Additionally, it was decided to extract the Hudgins feature, WL, to exploit frequency related information of the signal in the classification. All these features will be explained in the following text. \\
 
+MAV is a commonly used feature to represent information on muscle contraction intensity and how much force a subject needs to produce to perform a movement at a given intensity. It changes linearly proportional with contraction intensity; the more intense the contraction is the higher the feature value will be and vice versa. For one window in the $i^{th}$ channel, MAV is calculated as:
 
 \begin{equation} \label{eq:MAV}
 MAV_i=\frac{\sum\limits_{n=1}^{ws}|x_i[n]|}{ws}
 \end{equation}
 
-
+where $x_i[n]$ denotes the $n^{th}$ raw sample from channel $i$ and $ws$ denotes window size or number of samples in one window. \\
+Scaling MAV with the mean of MAV across all channels will remove the dependency of specific movement intensity - some movements produce higher mean intensities than others at the same fraction of the MVC. The average of MAV across all channels is denoted MMAV and is calculated as: 
 
 \begin{equation} \label{eq:MMAV}
 MMAV=\frac{\sum\limits_{i=1}^{8}MAV_i}{8}
 \end{equation}
 
-
+MAV scaled by MMAV is denoted SMAV and is calculated as follows for each window in the $i^{th}$ channel:
 
 \begin{equation} \label{eq:SMAV}
 SMAV_i=\frac{MAV_i}{MMAV}
 \end{equation}
 
-
+Each EMG channel in MYB records a mixture of sources. Some individual sources can affect multiple channels, which will increase the correlation between channels, while other more local sources might only affect a single channel, which decreases the correlation. To represent the correlation between channel $i$ and the neighbouring channel $i+1$, Donovan et al. proposed the calculation of a correlation coefficient (CC), which is expressed as: 
 
 \begin{equation} \label{eq:CC}
 CC_i=\frac{\sum\limits_{n=1}^{ws}X_i[n]X_{i+1}[n]}{ws}
 \end{equation}
 
-
+where $X_i[n]$ is the $n^{th}$ sample from channel $i$ in one window after the sample has been normalized. The normalization is done by subtracting the mean of raw samples from each samples followed by dividing the resulting values with their standard deviation.  \\
+In an effort to further represent the relationship between channels, the mean of the absolute value of the difference between normalized channel values was calculated. This is referred to as mean absolute difference normalized (MADN), and is expressed as:
 
 \begin{equation} \label{eq:MADN}
 MADN_i=\frac{\sum\limits_{n=1}^{ws}|X_i[n]-X_{i+1}[n]|}{ws}
 \end{equation}
 
-
+To decrease the computational denseness of first calculating the normalized values as done with CC and MADN, MAD was calculated using just the raw samples. This is referred to as MADR and is expressed as:
 
 \begin{equation} \label{eq:MADR}
 MADR_i=\frac{\sum\limits_{n=1}^{ws}|x_i[n]-x_{i+1}[n]|}{ws}
 \end{equation}
 
+Similar to MAV, MAD is affected by movement intensity and is therefore scaled by MMAV, which results in the final space domain feature SMADR: 
 
-
-\begin{equation} \label{eq:MMADR}
+\begin{equation} \label{eq:SMADR}
 SMADR_i=\frac{MADR_i}{MMAV}
 \end{equation}
 
-
+Finally, to increase the amount information the classifier based its decisions upon, the Hudgins feature WL was included. WL represents both amplitude and frequency content of the signal by measuring the length of the signal in channel $i$ in one window: 
 
 \begin{equation} \label{eq:WL}
-WL_i=\sum\limits_{n=1}^{N-1}|x_{i+1}[n]-x_i[n]|
+WL_i=\sum\limits_{n=1}^{ws-1}|x_{i}[n+1]-x_i[n]|
 \end{equation}
 
-
+To avoid redundancy in signal representation only SMAV, CC, MADN SMADR and WL were used to train the classifier and for online control. 
