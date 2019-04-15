@@ -1,15 +1,15 @@
 \section{Data Processing}
-The following sections will cover which filtering, segmentation and feature extraction that was decided to implement, based on the background information laid out in \secref{sec:BG:dataProcessing}. 
+The following sections will cover which filtering, segmentation and feature extraction solutions that were decided to implement, based on the background information presented in \secref{sec:BG:dataProcessing}. 
 
 \subsection{Filtering}
-Due to the EMG-bandwidth being 10-500 Hz and the interest of removing low-frequency artefact noise, a $2^{nd}$ order butterworth high-pass filter with a cut-off at 10 Hz was implemented. The order of the filter was chosen, as fast update time was highly desired in the online prosthetic control, and a higher order might have slowed the update due to a longer computation time. The choice of implementing a butterworth filter was due to the wanting of no phase shift inside the EMG bandwidth, as this might have distorted the fidelity of some of the extracted features. 
+Due to the EMG-bandwidth being 10-500 Hz and taking the MYB specifications into consideration the only interest was to remove low-frequency artefact noise. Hence, a $2^{nd}$ order Butterworth high-pass filter with a cut-off at 10 Hz was implemented. The order of the filter was chosen, as fast update time was highly desired in the online prosthetic control, and a higher order might have slowed the update due to a longer computation time. The choice of implementing a Butterworth filter was due to the desire of avoiding phase shift inside the EMG bandwidth, as this could distort the fidelity of some of the extracted features. 
+
+\subsection{Segmentation}
+In online myoelectric prosthetic control, quick update time is important to maintain naturalness in the prosthesis motion, while still ensuring robust classification. A windowing of 200 ms with 50 \% overlap was therefore chosen. This would update the prosthesis motion state every 100 ms and segment 40 samples per window to feed the classifier. In initial tests, this proved adequate to yield smooth and reliable prosthesis motions, when using the MYB for EMG acquisition. 
 
 \subsection{Feature Extraction}
-In online myoelectric prosthetic control, quick update time is important to maintain naturalness in the prosthesis motion, while still ensuring robust classification. A windowing of 200 ms with 50 \% overlap was therefore chosen. This would update the prosthesis motion state every 100 ms and segment 40 samples per window to feed the classifier. In initial tests, this proved adequate to yield smooth and reliable prosthesis motions. \\
-
-For this project it was decided to extract the space domain features recommended by Donovan et al. \cite{Donovan2017}, due to the increased classification accuracy obtained compared to using Hudgins features when applying MYB for data acquisition. The features formulated in \cite{Donovan2017} were MAV, Mean MAV (MMAV), Scaled MAV (SMAV), Correlation Coefficient (CC), Mean Absolute Difference Normalized (MADN), MAD Raw (MADR) and Scaled MADR (SMADR). Additionally, it was decided to extract the Hudgins feature, WL, to exploit frequency related information of the signal in the classification. All these features will be explained in the following text. \\
-
-MAV is a commonly used feature to represent information on muscle contraction intensity and how much force a subject needs to produce to perform a movement at a given intensity. It changes linearly proportional with contraction intensity; the more intense the contraction is the higher the feature value will be and vice versa. For one window in the $i^{th}$ channel, MAV is calculated as:
+For this project it was decided to extract the space domain features recommended by Donovan et al. \cite{Donovan2017}, due to the increased classification accuracy obtained compared to using Hudgins features when applying the MYB for data acquisition. The features formulated in \cite{Donovan2017} were MAV, Mean MAV (MMAV), Scaled MAV (SMAV), Correlation Coefficient (CC), Mean Absolute Difference Normalized (MADN), MAD Raw (MADR) and Scaled MADR (SMADR). Additionally, it was decided to extract the Hudgins feature, WL, to exploit frequency related information of the signal in the classification. All these features will be explained in the following text. \\
+MAV is a commonly used feature to represent information on muscle contraction intensity and how much force a subject needs to produce to perform a movement at a given intensity. Its changes are linearly proportional with contraction intensity; the more intense the contraction is the higher the feature value will be and vice versa. For one window in the $i^{th}$ channel, MAV is calculated as:
 
 \begin{equation} \label{eq:MAV}
 MAV_i=\frac{\sum\limits_{n=1}^{ws}|x_i[n]|}{ws}
@@ -28,7 +28,7 @@ MAV scaled by MMAV is denoted SMAV and is calculated as follows for each window 
 SMAV_i=\frac{MAV_i}{MMAV}
 \end{equation}
 
-Each EMG channel in MYB records a mixture of sources. Some individual sources can affect multiple channels, which will increase the correlation between channels, while other more local sources might only affect a single channel, which decreases the correlation. To represent the correlation between channel $i$ and the neighbouring channel $i+1$, Donovan et al. proposed the calculation of a correlation coefficient (CC), which is expressed as: 
+Each EMG channel in the MYB records a mixture of sources. Some individual sources can affect multiple channels, which will increase the correlation between channels, while other more local sources might only affect a single channel, which decreases the correlation. To represent the correlation between channel $i$ and the neighbouring channel $i+1$, Donovan et al. proposed the calculation of a correlation coefficient (CC), which is expressed as: 
 
 \begin{equation} \label{eq:CC}
 CC_i=\frac{\sum\limits_{n=1}^{ws}X_i[n]X_{i+1}[n]}{ws}

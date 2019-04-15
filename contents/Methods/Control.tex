@@ -9,6 +9,12 @@ The implementation of the control system was divided into two parts. To achieve 
 
 \subsubsection{Classification of movement}
 
+Real-time classification of movements was accomplished by implementing a LDA classifier. As presented in \secref{patter} the classifier needed to be trained using data from each movement. Hence, the five features extracted for each of the 40 $\percent$, 50 $\percent$ and 70 $\percent$ fraction of the pMVC for one movement were assembled into one labeled training matrix. The same was done for the three remaining movements. A fifth class was labeled rest and its training matrix only contained the features from the single rest acquisition.  
+
+3 intensities for each movement 
+4 movements + 1 rest 
+5 features 
+8 channels 
 
 \subsubsection{Proportional control}  
 
