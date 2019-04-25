@@ -4,7 +4,7 @@
 Evaluation of electrotactile feedback schemes in combination with myoelectric prosthetic control - closing the loop. 
 
 \textbf{Information on Investigators} \\
-The investigators are biomedical engineering Master students at Aalborg University. 
+The investigators are Biomedical Engineering Master students at Aalborg University. 
 
 \textbf{Background} \\
 Losing an upper limb can be hugely debilitating and can result in lowered quality of life due to restrictions in function, appearance and sensation. As a mean to regain the functionality, transradial amputees can receive a functional prosthesis, where the majority are controlled by muscles signals, or myoelectric (EMG) signals. However, still 25\% of myoelectric prosthesis users reject their device, where a major reason for the low satisfaction is due to lack of sensory feedback.
@@ -35,7 +35,7 @@ The subject must:
 \begin{itemize}
 	\item not have any diseases/conditions that may influence sensory perception.
 	\item be willing to receive low amplitude current stimulation. 
-	\item assessed by the investigators to have robust prosthetic control during the experiment. 
+	\item be assessed by the investigators to have robust prosthetic control during the experiment. 
 	\item be willing to give informed consent. 
 \end{itemize}
 
@@ -80,7 +80,7 @@ During the experiment the subject must let the dominant arm hang relaxed down th
 	\item Record EMG signals needed to build the prosthetic control system. To do this the subject must first perform  five movements used as reference signals: 15 seconds rest, 15 seconds prolonged maximum voluntary contraction (pMVC) of wrist supination, 15 seconds pMVC of wrist pronation, 15 seconds pMVC of opened hand and 15 seconds pMVC of closed hand. Between each contraction the subject will get a 15 seconds break to avoid fatigue. Secondly, the subject must perform movements from which the recorded signals are used to build the control system. Here, the subject controls a cursor as seen in \figref{fig:trapezoid}, and must match the cursor with trapezoidal trajectory. The cursor moves horizontally with time and the subject control the contraction intensity vertically. The subject must perform three contractions per movement: 40 \%, 50 \% and 70 \% of the pMVC. The plateau of the trapezoidal trajectory corresponds to the designated fraction. Between each performed movement, the subject gets a 15 seconds break to avoid fatigue. Lastly, a 15 seconds rest is recorded. 
 	\item Train the subject's ability to control the cursor via letting the subject move freely around inside the grid map for three minutes.
 	\item Train the subject's ability to control the cursor via letting the subject move freely around inside the grid map for three minutes. In this training, the cursor will not be visible, but the square the cursor is inside will be highlighted in blue. This cursor representation will be used in the remaining trainings and tests.
-	\item Perform target reaching test to evaluate the subject's ability to control the cursor. The designated target will be one of the squares in the grid highlighted in red. To reach a target the blue cursor square must match the target and dwell inside it for 1.5 seconds. Then a bell sound will occur and a new target appears. The time limit for reaching a target is 30 seconds. The starting point is always the resting state square (first square in third column), and the cursor will, thus, return to starting point when a target is reached or then the time limit is reached. A total of 16 targets will appear before this test is through.
+	\item Perform target reaching test to evaluate the subject's ability to control the cursor. The designated target will be one of the squares in the grid highlighted in red. To reach a target the blue cursor square must match the target and dwell inside it for 1.5 seconds. Then a bell sound will occur and a new target appears. The time limit for reaching a target is 30 seconds. The starting point is always the resting state square (first square in third column), and the cursor will, thus, return to starting point when a target is reached or then the time limit is reached. A total of 24 targets will appear before this test is through.
 \end{enumerate}
 
 \begin{figure}[H]                 
@@ -93,8 +93,8 @@ During the experiment the subject must let the dominant arm hang relaxed down th
 \vspace{-25pt}
 \begin{enumerate}
 	\item Record current amplitude thresholds needed to build the sensory feedback schemes. For each electrode the subject must first note when the stimulus is felt clearly. When all thresholds are set, the sensation of neighbouring electrodes are compared to ensure homogeneity in the sensation. Afterwards the same procedure is performed for the subject's tolerance threshold. 
-	\item Train the subject's ability to interpret sensory feedback of feedback one of the schemes. This is done by exposing the subject to feedback from 12 grid squares. The subject will experience the transitions from square to square until the designated square is reached. The path taken to reach the designated square is the direct route (full length in one direction and then the other), but which direction that will be travelled first is predetermined by the investigators.
-	\item Perform reinforcement learning on all grid different squares. The path taken to reach the designated square is the direct route, but which direction that will be travelled first is predetermined by the investigators. During this step the subject must look away from the computer screen. When a designated square is reached, the subject will be asked where the cursor is located. After answering the subject will be informed on whether is was correct, and told the correct location, if the answer was incorrect. 
+	\item Train the subject's ability to interpret sensory feedback for one of the schemes. This is done by exposing the subject to feedback from 12 grid squares. The subject will experience the transitions from square to square until the designated square is reached. The path taken to reach the designated square is the direct route (full length in one direction and then the other), but which direction that will be travelled first is predetermined by the investigators.
+	\item Perform reinforcement learning on all grid squares. The path taken to reach the designated square is the direct route, but which direction that will be travelled first is predetermined by the investigators. During this step the subject must look away from the computer screen. When a designated square is reached, the subject will be asked where the cursor is located. After answering the subject will be informed on whether is was correct, and told the correct location, if the answer was incorrect. 
 	\item Repeat reinforcement learning from step 3. The order of the squares and the route to each square will vary from step 3.
 \end{enumerate}
 
