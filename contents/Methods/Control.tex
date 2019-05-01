@@ -16,11 +16,11 @@ Online classification of movements was accomplished by implementing a LDA classi
 When a movement was decided upon by the classifier, the proportional control provided the control system with an actual output to move the virtual prosthesis. For this purpose a multiple linear regression model was created for each of the four movements, through the MATLAB function \textit{fitlm}. The models were fitted with the MAV features extracted from the fraction of pMVC data as well as the mean of the pMVC data. The data was scaled such that the pMVC data was set to 1 and the remaining data was scaled in relation to that. In the online control, the output of the decided regression models was written such that it would move in the direction described in \secref{sec:vp}. The output from the regression models was limited to a maximum of 1, meaning that maximum level of activation detecting was the pMVC level.  Another threshold implemented was a minimum activation of at least 15 $\percent$ for a movement to count, otherwise no output would be provided. This idea behind this implementation was to provide a more stable resting state in addition to the classifier. 
 
 
-\subsection{Assessment of Subject Control}
+\section{Online Control Training and Test} \label{sec:meth:contraintest}
 
-After the acquisition of data training data and the training of the classifier, two stages where the subject could familiarize themselves with the control and test how well they were able to use the control system, were implemented. It was highly critical that the subject was able to achieve sufficient control abilities such that it would not be due to poor control that a subject was not able to reach a target during test of the feedback schemes. However, as the classifier only had five classes, representing five separable movements to distinguish between, a robust online control was achieved in an evaluation test during pilot tests after short training trials. Therefore, the need for subject training could be kept to a minimum.  
+After the acquisition of data training data and the training of the classifier, two stages where the subject could familiarize themselves with the control and test how well they were able to use the control system, were implemented. It was highly critical that the subject was able to achieve sufficient control abilities such that it would not be due to poor control that a subject was not able to perform well when combined with sensory feedback in the final evaluation tests. However, as the classifier only had five classes, representing five separable movements to distinguish between, a robust online control was achieved in an evaluation test during pilot tests after short training trials. Therefore, the need for subject training could be kept to a minimum.  
 
-\subsubsection{Familiarization with Control}
+\subsection{Familiarization with Control} \label{sec:meth:contrain}
 
 At first, the subject was presented with an image of the grid, which can be seen in \figref{fig:meth:gridmap}, in \secref{sec:vp}. The subject was able to control a cursor and navigate around inside the grid by performing supination to go right, pronation to go left, open and closed hand to go up and down, and rest to stand still. The familiarization was separated into two stages. In the first stage, the user had three minutes to get acquainted the functionality of the control moving the cursor shown in \figref{fig:C1} (a). The cursor acted as a direct output of the control. During the three minute familiarization, the subject was instructed in training unflawed performance of each movement and the transition from a movement to rest. In the second stage, the visual feedback in the form of the cursor was made more discrete. This was done by making the cursor invisible and instead highlighting the outlines of the target that contained the cursor. This discretized cursor representation was included to make the visual feedback identical in resolution to the sensory feedback. The discrete visual feedback can be seen in \figref{fig:C1} (b). Again the subject had three minutes to familiarize with the control. 
 
@@ -34,20 +34,8 @@ At first, the subject was presented with an image of the grid, which can be seen
 	\label{fig:C1}
 \end{figure}
 
-\subsubsection{Evaluation Test}
+\subsection{Evaluation Test} \label{sec:meth:contest}
 
 After completion of the two stages of familiarization, a target reaching test was carried out. In this project, performance evaluation will be carried out in a virtual environment through a Fitts' Law based target reaching test. In this test, a square was highlighted with red and the subject would have to move the discretized cursor to the desired target and dwell inside it for 1.5 seconds in order for it to be deemed reached. The subject had 30 seconds to reach a target. The test was designed such that each of the 24 squares in the grid was to be reached. When a target was either reached or the time to reach the target ran out, the cursor would be reset to the neutral position (first row, third column in \figref{fig:meth:gridmap}). \\
-The target reaching test was made such that a measure of how well the subjects was able to use the control system could be obtained. Hereby it also acted as a reference for the later comparisons with control in combination with the two feedback schemes. Furthermore, if the investigators deemed the achieved subject control insufficient, the investigators could choose to exclude the subject. From the target reaching test, performance measures of completion rate, time to reach a target and length travelled to reach a target, were extracted for performance evaluation.        
-
-
-
-
-
-
-
-
-
-
-
-
+The target reaching test was made such that a measure of how well the subjects was able to use the control system could be obtained. Hereby it also acted as a reference for the later comparisons with control in combination with the two feedback schemes. Furthermore, if the investigators deemed the achieved subject control insufficient, the investigators could choose to exclude the subject. From the target reaching test, performance measures of completion rate, time to reach a target and length travelled to reach a target were extracted for performance evaluation.
 
