@@ -1,18 +1,14 @@
 
 \section{The Prosthetic Control System}
 
-Having extracted features from the three EMG datasets of one movement for each of the four movements, the control system could be build in order to achieve online recognition of movements. The following sections will explain the implementation of the control system and how the achieved level of control was assessed for each subject. 
+Having extracted features from the three EMG datasets of one movement for each of the four movements, the control system could be build in order to achieve online recognition of movements. The implementation of the control system was divided into two parts. To achieve recognition of performed movement a classifier was trained, however, this only produces a recognition of a movement and does not reflect the intensity of which the movement is being performed with. Therefore, following the recognition of the performed movements a linear regression model was implemented to achieve proportional control. 
 
-\subsection{Building the Control System} 
-
-The implementation of the control system was divided into two parts. To achieve recognition of performed movement a classifier was trained, however, this only produces a recognition of a movement and does not reflect the intensity of which the movement is being performed with. Therefore, following the recognition of the performed movements a linear regression model was implemented to achieve proportional control. 
-
-\subsubsection{Movement Classification}
+\subsection{Movement Classification}
 
 Online classification of movements was accomplished by implementing a LDA classifier. As presented in \secref{patter} the classifier needed to be trained using data from each movement. Hence, the five features extracted for each of the 40 $\percent$, 50 $\percent$ and 70 $\percent$ fraction of the pMVC for one movement were assembled into one labeled matrix. The same was done for the three remaining movements. A fifth class was labeled rest and its matrix only contained the features from a single rest acquisition. These matrices were made for the data acquired from each of the eight channels in the MYB. All matrices were assembled into one training matrix with labels for each movement. Using the \textit{fitcdicsr}-function in MATLAB a LDA classifier was trained by feeding it the training matrix. Hereby, the classifier was trained in separating 5 classes using linear decision boundaries. During online use, the \textit{predict}-function was used to evaluate features from new input data in the classifier and decide which movement there was being performed.    
 
 
-\subsubsection{Proportional control}  
+\subsection{Proportional control}  
 When a movement was decided upon by the classifier, the proportional control provided the control system with an actual output to move the virtual prosthesis. For this purpose a multiple linear regression model was created for each of the four movements, through the MATLAB function \textit{fitlm}. The models were fitted with the MAV features extracted from the fraction of pMVC data as well as the mean of the pMVC data. The data was scaled such that the pMVC data was set to 1 and the remaining data was scaled in relation to that. In the online control, the output of the decided regression models was written such that it would move in the direction described in \secref{sec:vp}. The output from the regression models was limited to a maximum of 1, meaning that maximum level of activation detecting was the pMVC level. This was equivalent to moving the cursor 1 cm on the computer screen. Thus, the cursor had a maximum speed of 1 cm per output. As the grid system was quadratic with 20 cm in length, each DoF had a full actuation speed of 2 seconds at maximum activation. Another threshold implemented was a minimum activation of at least 15 $\percent$ for a movement to count, otherwise no output would be provided. This idea behind this implementation was to provide a more stable resting state in addition to the classifier. 
 
 

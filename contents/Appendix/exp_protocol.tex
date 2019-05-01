@@ -41,24 +41,28 @@ The subject must:
 
 \textbf{{\Large Experiment Description}} \\
 \newline
-The main aim of the experiment is for the subject to be able to correctly interpret the two sensory feedback schemes when combined with myoelectric prosthetic control. The grid illustrated in \figref{fig:gridmap} is the map the subject will be able to navigate inside. Each square in the map will deliver a different stimulus corresponding to the motion state of the virtual prosthesis, represented as the black cursor. The square with center in the origin (square with cursor inside in \figref{fig:gridmap}) corresponds to resting state and will provide no sensory feedback. The remaining squares in the first row will deliver stimuli corresponding to only the wrist rotation degree of freedom, and the remaining squares in the third column will deliver stimuli only corresponding to the closed hand DOF. The remaining squares will deliver a stimulation based on a combination of the two DOFs. The further away from resting state a square is, corresponds to the angular degree of the prosthesis state in relation to the performed movement (see \figref{fig:sensconfigs}). \\
-The arrows in the upper right corner of \figref{fig:gridmap} represent the hand movements needed to be performed to move the cursor in the corresponding direction. The control system will only respond to single DOF movements. Thus, the cursor is only able to move along one axis at a time and not diagonally. The subject will control the cursor with the dominant arm through an EMG electrode armband. The subject will receive stimulation from an electrode consisting of 16 electrode pads placed around the contra-lateral forearm (see illustration in \figref{fig:sensconfigs}).
+The main aim of the experiment is for the subject to be able to correctly interpret the two sensory feedback schemes when combined with myoelectric prosthetic control. The grid illustrated in \figref{fig:gridmap} is the map the subject will be able to navigate inside. Each square in the map will deliver a different stimulus corresponding to the motion state of the virtual prosthesis, represented as the black cursor. The square with center in the origin (square with cursor inside in \figref{fig:gridmap}) corresponds to resting state and will provide no sensory feedback. The remaining squares in the first row will deliver stimuli corresponding to only the wrist rotation degree of freedom, and the remaining squares in the third column will deliver stimuli only corresponding to the closed hand DOF. The remaining squares will deliver a stimulation based on a combination of the two DOFs. The further away from resting state a square is, corresponds to the angular degree of the prosthesis state in relation to the performed movement (see \figref{fig:sensconfigs}). 
 
-\begin{figure}
+\begin{figure} [H]
 	\subfigure[Illustration of the spatial scheme.]
-		{\includegraphics[width=0.48\textwidth]{figures/El_array_spatial}}
+	{\includegraphics[width=0.48\textwidth]{figures/El_array_spatial}}
 	\subfigure[Illustration of the amplitude scheme.]
-		{\includegraphics[width=0.48\textwidth]{figures/El_array_amplitude}}
+	{\includegraphics[width=0.48\textwidth]{figures/El_array_amplitude}}
 	\caption{Figure (a) shows the spatial scheme, which is based on different pads being activated depending on the level of the grid square the cursor is located in. The highest number of possibly activated pads is four at a time. Figure (b) shows the amplitude scheme. Here, the amplitude of the active pads will increase with the increase of the level of the target location. The highest number of possibly activated pads is eight at a time.}
 	\label{fig:sensconfigs}
 \end{figure}
+
+
+The arrows in the upper right corner of \figref{fig:gridmap} represent the hand movements needed to be performed to move the cursor in the corresponding direction. The control system will only respond to single DOF movements. Thus, the cursor is only able to move along one axis at a time and not diagonally. The subject will control the cursor with the dominant arm through an EMG electrode armband. The subject will receive stimulation from an electrode consisting of 16 electrode pads placed around the contra-lateral forearm (see illustration in \figref{fig:sensconfigs}).
+
+
 
 \begin{figure}[H]                 
 	\includegraphics[width=0.9\textwidth]{figures/gridmap2}  
 	\caption{Image of the grid map and cursor used in the experiment. Performing supination moves the cursor the right, pronation moves it to the left and closing the hand moves it down. Opening the hand moves the cursor up, and is used as a correction movement if a wrong movement has been made.}
 	\label{fig:gridmap} 
 \end{figure}
-
+\newpage
 
 \textbf{{\Large Hand Movements Used for Prosthetic Control}} \\
 
