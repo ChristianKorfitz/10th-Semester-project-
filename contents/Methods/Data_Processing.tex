@@ -53,7 +53,7 @@ Similar to MAV, MAD is affected by movement intensity and is therefore scaled by
 SMADR_i=\frac{MADR_i}{MMAV}
 \end{equation}
 
-Finally, to increase the amount information the classifier based its decisions upon, the Hudgins feature WL was included. WL represents both amplitude and frequency content of the signal by measuring the length of the signal in channel $i$ in one window: 
+Finally, to increase the amount information the classifier based its decisions upon, the Hudgins feature WL was included. WL represents both amplitude and frequency content of the signal by measuring the summed absolute difference between neighbouring samples in the signal in channel $i$ in one window: 
 
 \begin{equation} \label{eq:WL}
 WL_i=\sum\limits_{n=1}^{ws-1}|x_{i}[n+1]-x_i[n]|
