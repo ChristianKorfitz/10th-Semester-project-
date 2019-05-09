@@ -3,7 +3,7 @@ For a myoelectric prosthesis to know which movement to perform, it needs to know
 A frequently used supervised classifier for myoelectric prosthetic control is the LDA classifier. An advantage of using LDA is that it enables robust control, while having a low computational cost \cite{Englehart2003}. LDA will be used in this project to determine motor function and an overview of the theory behind LDA will be given in the following section.
 
 \subsection{Linear Discriminant Analysis} \label{lda}
-LDA determines decision boundaries between the desired number of classes, where the distance between the decision boundary and the centroid of the class feature values is maximized. Such a decision boundary is defined as a linear combination of the feature values and a weight $w$:
+LDA determines decision boundaries between the desired number of classes, where the distance between the decision boundary and the centroid of the class feature values is maximized. Such a decision boundary is defined as a linear combination of the feature values $x$:
 
 \begin{equation} \label{eq:LDAcommon}
 	g_{j}(x) = weight_{j}x + bias_{j}
