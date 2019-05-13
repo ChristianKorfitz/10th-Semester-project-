@@ -1,0 +1,240 @@
+\documentclass[journal]{IEEEtran}
+
+% IF the next line of code is included the \thanks command will be shown on the bottom left of page 1. However with this it is not possible to control where pictures should be shown. Therefore it is left out for now and one might find anohter solution for the \thanks notes to be shown.
+\IEEEoverridecommandlockouts   
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{physics}
+%\usepackage[T1]{fontenc} % optional
+%\usepackage[cmintegrals]{newtxmath}
+%\usepackage{bm} % optional
+\usepackage{lipsum}
+\usepackage[pdftex]{graphicx}
+\usepackage{array}
+%\usepackage[caption=false,font=normalsize,labelfont=sf,textfont=sf]{subfig}
+\usepackage[caption=false,font=small,labelfont=small,textfont=small]{subfig}
+\usepackage{multicol,lipsum}
+
+%\usepackage{stfloats}
+\usepackage{url}
+%\usepackage{subcaptio}
+
+\usepackage{romannum}
+
+% Possible to use encircled numbers
+\usepackage{tikz}
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+		\node[shape=circle,draw,inner sep=1.2pt] (char) {#1};}}
+% end of encircled numbers
+
+%\usepackage[section]{placeins}  % Keeps figures within their section
+
+% From latex template IEEE for ECCE
+\usepackage{cite}
+\usepackage{lettrine}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+		T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+
+% TO get table caption on top
+%\usepackage[tableposition=top]{caption}
+%\newcommand{\captionabove}[2][]{%
+%	\vskip-\abovecaptionskip
+%	\vskip+\belowcaptionskip
+%	\ifx\@nnil#1\@nnil
+%	\caption{#2}%
+%	\else
+%	\caption[#1]{#2}%
+%	\fi
+%	\vskip+\abovecaptionskip
+%	\vskip-\belowcaptionskip
+%}
+%
+
+\hyphenation{op-tical net-works semi-conduc-tor}
+
+\renewcommand{\baselinestretch}{1}  % Set linespacing
+
+% To be able to put table and figure side by side
+\usepackage{floatrow}
+% Table float box with bottom caption, box width adjusted to content
+\newfloatcommand{capbtabbox}{table}[][\FBwidth]
+%\newfloatcommand{capbtabbox}{table}[][0.4\textwidth]
+\floatsetup[table]{capposition=top}
+\usepackage{blindtext}
+
+%%%%%%%%%%%%%%% Code for table %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ \usepackage{multirow}
+ \definecolor{GGreen}{rgb}{0.0666,0.5,0.153}
+
+\usepackage{booktabs,colortbl, array}
+\usepackage{pgfplotstable}
+\pgfplotsset{compat=1.8}
+
+\definecolor{rulecolor}{RGB}{0,121,171}
+\definecolor{tableheadcolor}{gray}{0.92}
+
+\newcommand{\topline}{ %
+	\arrayrulecolor{rulecolor}\specialrule{0.1em}{\abovetopsep}{0pt}%
+	\arrayrulecolor{tableheadcolor}\specialrule{\belowrulesep}{0pt}{0pt}%
+	\arrayrulecolor{rulecolor}}
+% Command \midline consists of 3 rules (top colour tableheadcolor, middle colour black, bottom colour white)
+\newcommand{\midtopline}{ %
+	\arrayrulecolor{tableheadcolor}\specialrule{\aboverulesep}{0pt}{0pt}%
+	\arrayrulecolor{rulecolor}\specialrule{\lightrulewidth}{0pt}{0pt}%
+	\arrayrulecolor{white}\specialrule{\belowrulesep}{0pt}{0pt}%
+	\arrayrulecolor{rulecolor}}
+
+% Command \bottomline consists of 2 rules (top colour
+\newcommand{\bottomline}{ %
+	\arrayrulecolor{white}\specialrule{\aboverulesep}{0pt}{0pt}%
+	\arrayrulecolor{rulecolor} %
+	\specialrule{\heavyrulewidth}{0pt}{\belowbottomsep}}%
+
+%Counter for double column equation
+\newcounter{MYtempeqncnt}
+
+\newcommand{\midheader}[2]{%
+	\midrule\topmidheader{#1}{#2}}
+\newcommand\topmidheader[2]{\multicolumn{#1}{c}{\textsc{#2}}\\%
+	\addlinespace[0.5ex]}
+
+\pgfplotstableset{normal/.style ={%
+		header=true,
+		string type,
+		%	font=\addfontfeature{Numbers={Monospaced}}\small,
+		column type=l,
+		every odd row/.style={
+			before row=
+		},
+		every head row/.style={
+			before row={\topline\rowcolor{tableheadcolor}},
+			after row={\midtopline}
+		},
+		every last row/.style={
+			after row=\bottomline
+		},
+		col sep=&,
+		row sep=\\
+	}
+}
+
+\usepackage{nameref}
+\usepackage{hyperref}
+\usepackage{bookmark}
+\hypersetup{%
+	%pdfpagelabels=true,%
+	plainpages=false,%
+	pdfauthor={Author(s)},%
+	pdftitle={Title},%
+	pdfsubject={Subject},%
+	bookmarksnumbered=true,%
+	colorlinks,%
+	citecolor=black,%
+	filecolor=blacke,%
+	linkcolor=black,% you should probably change this to black before printing
+	urlcolor=blue,%
+	pdfstartview=FitH%
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\title{Evaluation of Electrotactile Feedback Schemes in Combination with Electromyographic Control \\– Closing the Loop\\
+		%\thanks{This work was supported by the Reliable Power Electronic-Based Power System (REPEPS) project at the Department of Energy Technology, Aalborg University as a part of the Villum Investigator Program funded by the Villum Foundation.}
+}
+
+\author{\IEEEauthorblockN{Christian~Korfitz~Mortensen and Martin~Alexander~Garenfeld}\\
+	%\IEEEauthorblockA{\textit{Dept. of Energy Technology} \\
+	%	\textit{Aalborg University},
+	%	Aalborg, Denmark \\
+	%	mkg@et.aau.dk, xwa@et.aau.dk, pda@et.aau.dk, fbl@et.aau.dk}
+	\thanks{Christian Korfitz Mortensen and Martin Alexander Garenfeld are both undergrad. students at the School of Medicine and Health at Aalborg University, Denmark (email: ckmo14@student.aau.dk, mgaren14@student.aau.dk). }
+	%\thanks{This work was supported by the Reliable Power Electronic-Based Power System (REPEPS) project at the Department of Energy Technology, Aalborg University as a part of the Villum Investigator Program funded by the Villum Foundation.}
+} 
+%		\textit{Corresponding Author: Mads Graungaard Taul.}}
+
+
+%% The paper headers
+%\markboth{Journal of \LaTeX\ Class Files,~Vol.~14, No.~8, August~2015}%
+%{Shell \MakeLowercase{\textit{et al.}}: Bare Demo of IEEEtran.cls for IEEE Journals}
+%% The only time the second header will appear is for the odd numbered pages
+%% after the title page when using the twoside option.
+%% 
+%% *** Note that you probably will NOT want to include the author's ***
+%% *** name in the headers of peer review papers.                   ***
+%% You can use \ifCLASSOPTIONpeerreview for conditional compilation here if
+%% you desire.
+%
+%
+%
+%
+%% If you want to put a publisher's ID mark on the page you can do it like
+%% this:
+%%\IEEEpubid{0000--0000/00\$00.00~\copyright~2015 IEEE}
+%% Remember, if you use this you must call \IEEEpubidadjcol in the second
+%% column for its text to clear the IEEEpubid mark.
+
+\maketitle
+
+\begin{abstract}
+\input{contents/Paper_Documents/Abstract.tex}
+\end{abstract}
+
+\begin{IEEEkeywords}
+Closed-Loop, Myoelectric Prosthesis, Electrotactile Feedback, Plumbus 
+\end{IEEEkeywords}
+
+\IEEEpeerreviewmaketitle
+
+\section{Introduction}
+%\label{SEC_Introduction}
+\input{contents/Paper_Documents/Introduction.tex} 
+
+\section{Methods}
+
+\input{contents/Paper_Documents/Experimental_Protocol.tex}
+
+\input{contents/Paper_Documents/Feedback_Configurations.tex}
+
+\input{contents/Paper_Documents/Virtual_Prosthesis.tex}
+
+\input{contents/Paper_Documents/Data_Acquisition.tex}
+
+\input{contents/Paper_Documents/Prosthetic_Control_System.tex}
+
+\input{contents/Paper_Documents/Subject_Control}
+
+\input{contents/Paper_Documents/sens_thresh.tex}
+
+\input{contents/Paper_Documents/Feedback_training.tex}
+
+\input{contents/Paper_Documents/Sens_Eval.tex}
+
+\input{contents/Paper_Documents/Statistics.tex}
+
+
+
+\section{Results}
+
+
+\section{Discussion}
+
+
+\section{Conclusion}
+
+
+\appendix[Acknowledgement]
+The authors would like to thank supervisors Strahinja Dosen and Jakob Lund Dideriksen for providing constructive feedback, and the School of Medicine and Health at Aalborg University for providing equipment and the facilities to complete this study. Additionally, the authors are very thankful for all the voluntary participants. 
+%\clearpage
+%\IEEEtriggeratref{8}  % Cuts the references so the equalizes in length in the two coloums (x) is the reference number where the cut should be made
+\bibliography{bibliography}
+\bibliographystyle{ieeetr}
+
+\end{document}
+
