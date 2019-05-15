@@ -1,15 +1,13 @@
-\begin{figure*}[t]                 
-	\includegraphics[width=.85\textwidth]{figures/boxplot_results}
-	\caption{Box plots of the metrics extracted from the visual, spatial and amplitude feedback evaluation tests. The two evaluation tests in the spatial and amplitude feedback block, respectively, were combined by calculating the mean between the two tests.}
-	\label{fig:pa:boxplot_results} 
-\end{figure*}
 
-\begin{figure*}[t]                 
-	\includegraphics[width=.85\textwidth]{figures/hit_dist}
-	\caption{Hit rate for each target in the spatial and amplitude evaluation test, respectively. The more transparent a target is, the higher the hit rate was. 100 $\%$ accounts for a total of 28 hits for each test.}
-	\label{fig:pa:hit_dist} 
-\end{figure*}
+\subsection{Raw Trajectory Examples}
 
+The evaluation metrics were extracted from the performance of the target reaching evaluation test. In figure \ref{fig:pa:trajec} two examples of trajectories, which subjects took, can be seen. The top figure shows the ideal trajectory that one subject took when moving to a two DoF state. This indicates that the subject had comprehended the feedback and knew exactly when the designated state was reached. The bottom figure in figure \ref{fig:pa:trajec} is an example of a subject traveling to far down before moving to the right. However, this was corrected for as the subject still managed to reach the target.
+
+\begin{figure}[h]                 
+	\includegraphics[width=.7\textwidth]{figures/trajectories}
+	\caption{Examples of two path taken when moving the cursor to a target in the final evaluation test. The top figure show the ideal trajectory that a subject took when moving to a two DoF state. The bottom figure gives an example of a subject traveling to far down before moving to the right. However, this was corrected for an the subject still managed to reach the target. The blue line is the path, red square is the target state and the green dot is the direct cursor output.}
+	\label{fig:pa:trajec} 
+\end{figure}
 
 \subsection{Evaluation Metrics}
 The evaluation metrics from first to second evaluation test in each feedback scheme did not yield significant difference (p > 0.05). Therefore, it was chosen to view these evaluation tests as one, by calculating the mean between the first and second evaluation test in both blocks, resulting in a single test result for the spatial feedback and a test single result for the amplitude feedback. 
@@ -22,5 +20,18 @@ Figure \ref{fig:pa:boxplot_results} shows box plots of the extracted metrics for
 When observing the completion rate of the specific targets in figure \ref{fig:pa:hit_dist}, it can be derived that targets generally had a higher hit rate when using amplitude feedback compared to spatial (Mean completion rate with spatial feedback was 87 \% and amplitude was 93 \%). However, common for both feedback scheme was that the centered targets were more troublesome to reach (Mean completion rate for centered targets was 76 \% with spatial feedback and 88 \% with amplitude feedback; mean completion rate for peripheral targets was 93 \% with spatial feedback and 97 \% with amplitude feedback). A possible reason for this finding is that the subjects had to achieve complete rest to dwell inside these targets. 
 
 In the peripheral targets, the subjects did not necessarily need to achieve complete rest, as they could continue performing a movement and still be on the boundary of the target. Furthermore, combined DoF targets generally had a lower completion rate for the spatial feedback scheme (Mean completion rate for single DoF targets was 90 \% with spatial feedback and 93 \% with amplitude feedback; mean completion rate for combined DoF targets was 85 \% with spatial feedback and 93 \% with amplitude feedback). This could indicate that the sensory feedback regarding combined prosthetic states in the spatial feedback scheme was harder to interpret than in the amplitude feedback scheme. 
+
+
+\begin{figure*}[h]                 
+	\includegraphics[width=0.9\textwidth]{figures/boxplot_results}
+	\caption{Box plots of the metrics extracted from the visual, spatial and amplitude feedback evaluation tests. The two evaluation tests in the spatial and amplitude feedback block, respectively, were combined by calculating the mean between the two tests.}
+	\label{fig:pa:boxplot_results} 
+\end{figure*}
+
+\begin{figure}[H]                 
+	\includegraphics[width=.7\textwidth]{figures/hit_dist}
+	\caption{Hit rate for each target in the spatial and amplitude evaluation test, respectively. The more transparent a target is, the higher the hit rate was. 100 $\%$ accounts for a total of 28 hits for each test.}
+	\label{fig:pa:hit_dist} 
+\end{figure}
 
 
