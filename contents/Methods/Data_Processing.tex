@@ -8,7 +8,8 @@ Due to the EMG bandwidth being 10-500 Hz and taking the MYB specifications into 
 In online myoelectric prosthetic control, quick update time is important to maintain naturalness in the prosthesis motion, while still ensuring robust classification. A windowing of 200 ms with 50 \% overlap was therefore chosen. This would update the prosthetic motion output every 100 ms and segment 40 samples per window to feed the classifier. In initial tests, this proved adequate to yield smooth and reliable prosthesis motions, when using the MYB for EMG acquisition. 
 
 \subsection{Feature Extraction}
-For this project it was decided to extract the space domain features recommended by Donovan et al. \cite{Donovan2017}, due to the increased classification accuracy obtained compared to using Hudgins features when applying the MYB for data acquisition. The features formulated in \cite{Donovan2017} were MAV, Mean MAV (MMAV), Scaled MAV (SMAV), Correlation Coefficient (CC), Mean Absolute Difference Normalized (MADN), MAD Raw (MADR) and Scaled MADR (SMADR). Additionally, it was decided to extract the Hudgins feature, WL, to exploit frequency related information of the signal in the classification. All these features will be explained in the following text. \\
+For this project it was decided to extract the space domain features recommended by Donovan et al. \cite{Donovan2017}, due to the increased classification accuracy obtained compared to using Hudgins features when applying the MYB for data acquisition. The features formulated in \cite{Donovan2017} were MAV, Mean MAV (MMAV), Scaled MAV (SMAV), Correlation Coefficient (CC), Mean Absolute Difference Normalized (MADN), MAD Raw (MADR) and Scaled MADR (SMADR). Additionally, it was decided to extract the Hudgins feature, WL, to exploit frequency related information of the signal in the classification. All these features will be explained in the following text. 
+
 MAV is a commonly used feature to represent information on muscle contraction intensity and how much force a subject needs to produce to perform a movement at a given intensity. Its changes are linearly proportional with contraction intensity; the more intense the contraction is the higher the feature value will be and vice versa. For one window in the $i^{th}$ channel, MAV is calculated as:
 
 \begin{equation} \label{eq:MAV}
@@ -34,7 +35,8 @@ Each EMG channel in the MYB records a mixture of sources. Some individual source
 CC_i=\frac{\sum\limits_{n=1}^{ws}X_i[n]X_{i+1}[n]}{ws}
 \end{equation}
 
-where $X_i[n]$ is the $n^{th}$ sample from channel $i$ in one window after the sample has been normalized. The normalization is done by subtracting the mean of raw samples from each sample followed by dividing the resulting values with their standard deviation.  \\
+where $X_i[n]$ is the $n^{th}$ sample from channel $i$ in one window after the sample has been normalized. The normalization is done by subtracting the mean of raw samples from each sample followed by dividing the resulting values with their standard deviation.  
+
 In an effort to further represent the relationship between channels, the mean of the absolute value of the difference between normalized channel values was calculated. This is referred to as mean absolute difference normalized (MADN), and is expressed as:
 
 \begin{equation} \label{eq:MADN}

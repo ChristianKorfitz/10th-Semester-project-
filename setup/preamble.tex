@@ -80,7 +80,7 @@
 \usepackage{xcolor}
 \usepackage{textcomp}
 \usepackage{indentfirst}
-\setlength{\parindent}{1.5cm}
+\setlength{\parindent}{0.25cm}
 %-------MATHEMATICS---------------------------------
 % Defines new environments such as equation,
 % align and split 
@@ -123,10 +123,10 @@
     \@ifundefined{ttlp@#6}{}{\ttlp@write{#6}}}
 \makeatother
 
-\titlespacing{\chapter}{0pt}{0pt}{10pt}
-\titlespacing{\section}{0pt}{0pt}{-5pt}
-\titlespacing{\subsection}{0pt}{8pt}{-5pt}
-\titlespacing{\subsubsection}{0pt}{6pt}{-10pt}
+\titlespacing{\chapter}{0pt}{15pt}{15pt}
+\titlespacing{\section}{0pt}{15pt}{15pt}
+\titlespacing{\subsection}{0pt}{12pt}{13pt}
+\titlespacing{\subsubsection}{0pt}{12pt}{13pt}
 
 \titleformat*{\section}{\normalfont\Large\bfseries\color{aaublue}}
 \titleformat*{\subsection}{\normalfont\large\bfseries\color{aaublue}}
@@ -143,6 +143,7 @@
 \pagestyle{fancy}
 \fancyhf{} %delete everything
 \renewcommand{\headrulewidth}{0pt} %remove the horizontal line in the header
+\renewcommand{\footrulewidth}{1pt}
 \fancyhead[RO,LE]{\color{aaublue}\small\nouppercase\leftmark} %even page - chapter title
 \fancyhead[LO]{}
 \fancyhead[RE]{} 
@@ -255,8 +256,8 @@
 
 
 % remove all indentations
-\setlength\parindent{0pt}
-\parskip 5mm
+%\setlength\parindent{0pt}
+%\parskip 5mm
 \usepackage{verbatim}
 
 \definecolor{Gra}{RGB}{230,230,230}
