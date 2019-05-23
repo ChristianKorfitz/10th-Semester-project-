@@ -1,11 +1,11 @@
 \section{Feedback Configurations} \label{sec:feed}
 
 The fundamental interest of this project was to develop two novel, intuitive and useful feedback schemes to convey proprioceptive information through electrotactile stimulation and evaluate which one would aid control the most. This was to be implemented in a two DoF virtual prosthesis using wrist rotation and closed hand as motions, where four levels of sensory feedback would be provided for each DoF to communicate prosthetic motion states. \\
-The center electrode pads were placed most central on the anterior side of arm, when using a pronated arm as reference. See illustration in \figref{fig:meth:elec_place}. The electrode array was fixated on the non-dominant arm such that there was a maximum gap of three cm between the outer electrodes posteriorly. It was chosen to place the electrode array on the non-dominant arm since the electrode pads used did not prohibit current leakage. Thus, placing the electrode on the same arm as the MYB could have resulted in interference, which might corrupt recorded EMG data and impair the control system. Providing feedback to non-dominant arm has, however, proven usable for providing meaningful artificial proprioceptive feedback \cite{Pistohl2015}.  
+The center electrode pads were placed most central on the anterior side of arm, when using a pronated arm as reference. See illustration in \figref{fig:meth:elec_place}. The electrode array was fixated on the non-dominant arm such that there was a maximum gap of three cm between the outer electrode pads posteriorly. It was chosen to place the electrode array on the non-dominant arm since the electrode pads used did not prohibit current leakage. Thus, placing the electrode on the same arm as the MYB could have resulted in interference, which might corrupt recorded EMG data and impair the control system. Providing feedback to non-dominant arm has, however, proven usable for providing meaningful artificial proprioceptive feedback \cite{Pistohl2015}.  
 
 \begin{figure}[H]                 
 	\includegraphics[width=0.85\textwidth]{figures/elec_place}  
-	\caption{Illustration of the placement of the electrode array.}
+	\caption{Illustration of the placement of the electrode array. There was a maximum gap of three cm between the outer electrode pads posteriorly.}
 	\label{fig:meth:elec_place} 
 \end{figure} The following section will present the two developed spatial and amplitude feedback schemes. 
 
@@ -26,11 +26,11 @@ The lower eight pads (1-4 and 13-16) were used to convey information about the c
 
 In this scheme, attention to the recognition of stimulation localization should be less. Instead, the subject would have to discriminate between the intensity of stimulation in the regions which were active. \\
 Compared to the spatial configuration where the feedback was given through dynamically changing the pads activated, the amplitude configuration instead conveyed feedback in three greater regions and solely modulated the amplitude of the stimulation. The upper eight pads were again used for the rotational DoF, illustrated in \figref{fig:amplitude}. Pads 5-8 were activated with different amplitude levels at pronated prosthetic states 1 and 2, respectively. The same was applicable for supinated states using pads 9-12. \\
-For conveying information about closed hand, pads 1,2,15 and 16 were used. When in a combined DoF prosthetic state, eight electrodes would be active in amplitude levels relative to the level of the prosthetic state. It was chosen to use groups of four electrode pads to exploit the largest number of pads in the electrode array, while still maintaining a symmetric distribution of possible active pads.
+For conveying information about closed hand, pads 1,2,15 and 16 were used. When in a combined DoF prosthetic state, eight pads would be active in amplitude levels relative to the level of the prosthetic state. It was chosen to use groups of four electrode pads to exploit the largest number of pads in the electrode array, while still maintaining a symmetric distribution of possible active pads.
 
 \begin{figure}[H]                 
 	\includegraphics[width=0.55\textwidth]{figures/El_array_amplitude}  
-	\caption{Transverse view of the developed amplitude scheme. Here, the amplitude of the active pads would increase with the increase of the prosthetic state; the higher the level the higher the current amplitude of the given electrodes. The level of amplitude strength assigned to the various electrodes corresponded to levels of prosthesis state in \figref{fig:meth:gridmap}. The highest number of possibly activated pads was eight at a time.  For subjects with the electrode array fitted on the right arm the rotational states were reversed.}
+	\caption{Transverse view of the developed amplitude scheme. Here, the amplitude of the active pads would increase with the increase of the prosthetic state; the higher the level the higher the current amplitude of the given pads. The level of amplitude strength assigned to the various pads corresponded to levels of prosthesis state in \figref{fig:meth:gridmap}. The highest number of possibly activated pads was eight at a time.  For subjects with the electrode array fitted on the right arm the rotational states were reversed.}
 	\label{fig:amplitude} 
 \end{figure}
 
