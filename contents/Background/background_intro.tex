@@ -2,10 +2,10 @@ The background chapter will outline the considerations that needs to be made whe
 
 The main idea behind myoelectric prosthetic control is to translate recorded muscle signals (EMG signals) into a motion performed by the prosthesis. Often, if possible, EMG is recorded from the muscles which were used to perform movements with the biological hand and used for prosthetic control. A pattern recognition model can be trained to differentiate between a set of movement classes. When receiving a segmented part of an EMG signal, it then decides upon which movement class that most likely is being performed. In combination with the elicited muscle contraction level, this is used as input in the control system and the prosthesis should perform a corresponding motion. \cite{Guanglin2010} In a closed-loop prosthesis, the position state the prosthesis is in can be coded to be equivalent to a certain sensory feedback. The should enable the user to interpret the sensory feedback and use as additional information to visual feedback about the prosthesis' position state. \cite{Strbac2016} A closed-loop prosthesis iteration can be seen in \figref{fig:closed_loop_pros}. 
 
-Regarding control the background chapter will explain the following: generation of EMG signals, data acquisition, data processing, pattern recognition and proportional control. Regarding sensory feedback the following will be explained: types of sensory feedback, prior investigations on sensory feedback and sensory feedback configurations. 
-
 \begin{figure}[H]                 
 	\includegraphics[width=.65\textwidth]{figures/closed_loop_pros}  
 	\caption{The figure shows the stages of a closed-loop prosthesis. First, EMG signals are recorded from the user. The signals are decoded and an output is relayed to the control system, which is used for the prosthesis to perform a motion. The position state is then read and sensory feedback is delivered to the user regarding which position state the prosthesis is in.}
 	\label{fig:closed_loop_pros} 
 \end{figure}
+Regarding control the background chapter will explain the following: generation of EMG signals, data acquisition, data processing, pattern recognition and proportional control. Regarding sensory feedback the following will be explained: types of sensory feedback, prior investigations on sensory feedback and sensory feedback configurations. 
+
